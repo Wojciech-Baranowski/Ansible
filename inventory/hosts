@@ -1,0 +1,10 @@
+[cloud_all:children]
+cloud_workers
+cloud_masters
+
+[cloud_workers]
+10.0.0.16/28
+10.0.0.17/28
+
+[cloud_masters]
+10.0.0.8/30
