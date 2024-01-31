@@ -1,10 +1,17 @@
+[bastion]
+192.168.1.2
+
 [cloud_all:children]
 cloud_workers
 cloud_masters
 
 [cloud_workers]
-10.0.0.16/28
-10.0.0.17/28
+10.0.0.16
+10.0.0.17
 
 [cloud_masters]
-10.0.0.8/30
+10.0.0.8
+
+[cloud_all:vars]
+ansible_ssh_common_args = '-J simmondobber@192.168.1.2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+

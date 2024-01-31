@@ -1,0 +1,14 @@
+---
+
+- name: Generate cluster config
+  template:
+    src: ../templates/cluster_configuration.yaml.j2
+    dest: /etc/kubernetes/cluster_configuration.yaml
+
+- name: Initialize cluster
+  shell: kubeadm init --skip-token-print --node-name {{ node_name.stdout }} --config /etc/kubernetes/cluster_configuration.yaml
+
+#- name: Generate cluster certificate key
+#  shell: kubeadm init phase upload-certs --upload-certs | grep -v "\["
+#  register: cluster_certificate_key
+

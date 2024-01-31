@@ -1,0 +1,9 @@
+---
+
+- hosts: cloud_all
+  become: true
+  become_method: "sudo"
+  become_flags: "-E"
+  roles:
+    - cloud_init
+

@@ -1,0 +1,9 @@
+---
+
+- name: Generate cluster join command
+  shell: kubeadm token create --print-join-command
+  delegate_to: "{{ groups.cloud_masters | first }}"
+  register: cluster_join_token
+
+- name: Join cluster
+  shell: "{{ cluster_join_token.stdout }} --node-name {{ node_name.stdout }}"

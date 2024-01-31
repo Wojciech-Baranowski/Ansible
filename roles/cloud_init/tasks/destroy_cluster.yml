@@ -1,0 +1,16 @@
+---
+
+- name: Destroy cluster
+  shell: kubeadm reset --force
+
+- name: Delete node from cluster
+  shell: kubectl delete node "{{ node_name }}"
+  delegate_to: "{{ groups.cloud_masters | first }}"
+  when: not is_first_master_node
+  ignore_errors: true
+
+- name: Delete user config
+  ansible.builtin.file:
+    path: $HOME/.kube/
+    state: absent
+
