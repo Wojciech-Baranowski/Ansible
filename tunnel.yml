@@ -1,7 +1,0 @@
----
-
-- hosts: localhost
-  connection: local
-  roles:
-    - bastion_tunnel
-

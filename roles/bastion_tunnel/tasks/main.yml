@@ -1,5 +1,0 @@
----
-
-- name: Make k8s api tunnel
-  include_tasks: k8s_api_tunnel.yml
-

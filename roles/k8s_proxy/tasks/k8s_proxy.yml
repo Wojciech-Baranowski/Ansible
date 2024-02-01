@@ -1,0 +1,5 @@
+---
+
+- name: Make k8s proxy
+  #shell: kubectl proxy --address='127.0.0.1' --port 8001 &
+  shell: kubectl proxy --insecure-skip-tls-verify &

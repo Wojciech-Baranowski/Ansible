@@ -1,0 +1,8 @@
+---
+
+- name: Make kubectl tunnel
+  include_tasks: kubectl_tunnel.yml
+
+- name: Make k8s proxy
+  include_tasks: k8s_proxy.yml
+

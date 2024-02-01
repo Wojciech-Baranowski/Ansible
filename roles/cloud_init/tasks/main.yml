@@ -21,10 +21,6 @@
   include_tasks: add_user.yml
   when: is_first_master_node
 
-- name: Install network
-  include_tasks: install_network.yml
-  when: is_first_master_node
-
 - name: Join workers
   include_tasks: join_worker.yml
   when: not is_master_node

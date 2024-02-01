@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  connection: local
+  become: true
+  become_method: "sudo"
+  become_flags: "-E"
+  roles:
+    - k8s_proxy 
