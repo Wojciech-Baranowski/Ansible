@@ -1,0 +1,6 @@
+---
+
+bastion_admin_user: "simmondobber"
+bastion_ip: "192.168.1.2"
+cloud_first_master_node_ip: "{{ groups['cloud_masters'] | first }}"
+k8s_api_port: "6443"

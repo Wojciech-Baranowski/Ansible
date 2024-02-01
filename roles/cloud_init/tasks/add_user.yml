@@ -17,3 +17,8 @@
     owner: "{{ k8s_admin_user }}"
     mode: 0600
 
+- name: Copy config for local user
+  fetch:
+    src: /home/{{ k8s_admin_user }}/.kube/config
+    dest: /home/{{ k8s_admin_user }}/.kube/
+    flat: true
