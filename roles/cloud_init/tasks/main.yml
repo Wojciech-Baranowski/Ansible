@@ -9,18 +9,31 @@
     path: /etc/kubernetes/kubelet.conf
   register: cluster_exists
 
+- name: Disconnect from cluster
+  include_tasks: disconnect_from_cluster.yml
+  when: not is_first_master_node
+
 - name: Destroy cluster
   include_tasks: destroy_cluster.yml
-  when: cluster_exists.stat.exists
+  when: is_first_master_node
 
 - name: Initialize cluster
   include_tasks: initialize_cluster.yml
   when: is_first_master_node
 
-- name: Add user
-  include_tasks: add_user.yml
+- name: Add admin user
+  include_tasks: add_admin_user.yml
   when: is_first_master_node
+
+- name: Join masters
+  include_tasks: join_master.yml
+  when: (is_master_node) and (not is_first_master_node)
 
 - name: Join workers
   include_tasks: join_worker.yml
-  when: not is_master_node
+  when: is_worker_node
+
+#- name: Initialize network
+#  include_tasks: initialize_network.yml
+#  when: is_first_master_node
+

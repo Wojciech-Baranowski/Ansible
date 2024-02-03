@@ -7,3 +7,4 @@
 
 - name: Join cluster
   shell: "{{ cluster_join_token.stdout }} --node-name {{ node_name.stdout }}"
+

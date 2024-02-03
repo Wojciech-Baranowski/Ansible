@@ -14,6 +14,7 @@ cloud_masters
 
 [cloud_masters]
 10.0.0.8
+10.0.0.9
 
 [cloud_all:vars]
 ansible_ssh_common_args = '-J simmondobber@192.168.1.2 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'

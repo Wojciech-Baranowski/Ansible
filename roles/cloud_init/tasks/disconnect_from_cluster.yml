@@ -1,0 +1,11 @@
+---
+
+- name: Delete node from cluster
+  shell: kubectl delete node "{{ node_name }}"
+  delegate_to: "{{ groups.cloud_masters | first }}"
+  ignore_errors: true
+
+- name: Clean up local file system
+  shell: kubeadm reset --force
+
+

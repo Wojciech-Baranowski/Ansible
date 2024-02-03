@@ -1,0 +1,38 @@
+---
+
+- name: Make .kube directory
+  ansible.builtin.file:
+    path: $HOME/.kube
+    state: directory
+
+- name: Copy config for user
+  copy:
+    src: /etc/kubernetes/admin.conf
+    dest: $HOME/.kube/config
+    remote_src: yes
+
+- name: Grant permissions to config for user
+  file:
+    path: $HOME/.kube/config
+    owner: "{{ k8s_admin_user }}"
+    mode: 0600
+
+- name: Duplicate config for user
+  copy:
+    src: $HOME/.kube/config
+    dest: $HOME/.kube/config_local
+    remote_src: yes
+
+- name: Make config for user
+  lineinfile:
+    path: $HOME/.kube/config_local
+    regexp: "server:"
+    line: "    server: https://127.0.0.1:6443"
+
+
+- name: Copy config to local user
+  fetch:
+    src: /home/{{ k8s_admin_user }}/.kube/config_local
+    dest: /home/{{ k8s_admin_user }}/.kube/config
+    flat: true
+

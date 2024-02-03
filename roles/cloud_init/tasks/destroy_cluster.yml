@@ -1,11 +1,9 @@
 ---
 
-- name: Delete node from cluster
-  shell: kubectl delete node "{{ node_name }}"
-  delegate_to: "{{ groups.cloud_masters | first }}"
-  when: not is_first_master_node
-  ignore_errors: true
-
-- name: Destroy cluster
+- name: Clean up local file system
   shell: kubeadm reset --force
+
+- name: Delete last node from cluster
+  shell: kubectl delete node "{{ node_name }}"
+  ignore_errors: true
 
