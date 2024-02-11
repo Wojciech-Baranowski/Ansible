@@ -1,0 +1,19 @@
+global_defs {
+  router_id LVS_DEVEL
+}
+
+vrrp_instance haproxy-vip {
+  state BACKUP
+  priority 100
+  interface eth0
+  virtual_router_id 60
+
+  virtual_ipaddress {
+    {{ virtual_ip }}
+  }
+
+  track_script {
+    chk_haproxy
+  }
+}
+

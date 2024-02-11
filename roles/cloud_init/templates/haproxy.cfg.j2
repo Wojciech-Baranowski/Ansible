@@ -1,0 +1,29 @@
+global
+    log /dev/log  local0 warning
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    daemon
+
+defaults
+  log global
+  option  httplog
+  option  dontlognull
+  timeout connect 5s
+  timeout client 5s
+  timeout server 5s
+
+frontend kube-apiserver
+  bind *:6443
+  mode tcp
+  option tcplog
+  default_backend kube-apiserver
+
+backend kube-apiserver
+    mode tcp
+    option tcplog
+    option tcp-check
+    balance roundrobin
+{% for master_node in groups['cloud_masters'] %}
+    server {{ master_node }} {{ master_node }}/30 check
+{% endfor %}
+

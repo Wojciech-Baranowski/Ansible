@@ -4,6 +4,8 @@ k8s_admin_user: "simmondobber"
 k8s_version: "v1.29.1"
 pod_cidr: "10.244.0.0/16"
 service_cidr: "10.245.0.0/16"
+virtual_ip: "10.0.0.2"
 is_master_node: "{{ 'cloud_masters' in group_names }}"
 is_worker_node: "{{ 'cloud_workers' in group_names }}"
 is_first_master_node: "{{ groups['cloud_masters'] | first == inventory_hostname }}"
+

@@ -21,6 +21,10 @@
   include_tasks: initialize_cluster.yml
   when: is_first_master_node
 
+- name: Initialize haproxy
+  include_tasks: initialize_haproxy.yml
+  when: is_master_node
+
 - name: Add admin user
   include_tasks: add_admin_user.yml
   when: is_first_master_node
@@ -32,8 +36,4 @@
 - name: Join workers
   include_tasks: join_worker.yml
   when: is_worker_node
-
-#- name: Initialize network
-#  include_tasks: initialize_network.yml
-#  when: is_first_master_node
 

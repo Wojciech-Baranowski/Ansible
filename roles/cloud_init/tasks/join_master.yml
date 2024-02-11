@@ -9,6 +9,7 @@
   shell: kubeadm init phase upload-certs --upload-certs | grep -v "\["
   register: cluster_certificate_key
   delegate_to: "{{ groups.cloud_masters | first }}"
+  run_once: true
 
 - name: Join Kubernetes cluster
   shell: "{{ cluster_join_token.stdout }} --control-plane --certificate-key {{ cluster_certificate_key.stdout }} --node-name {{ node_name.stdout }}"
