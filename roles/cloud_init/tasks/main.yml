@@ -25,9 +25,9 @@
   include_tasks: initialize_haproxy.yml
   when: is_master_node
 
-- name: Add admin user
-  include_tasks: add_admin_user.yml
-  when: is_first_master_node
+- name: Propagate kubeconfig
+  include_tasks: propagate_kubeconfig.yml
+  when: is_master_node
 
 - name: Join masters
   include_tasks: join_master.yml

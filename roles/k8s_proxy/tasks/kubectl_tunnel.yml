@@ -1,4 +1,4 @@
 ---
 
 - name: Make k8s api tunnel
-  shell: ssh -N {{ bastion_admin_user }}@{{ bastion_ip }} -L {{ k8s_api_port }}:{{ cloud_first_master_node_ip }}:{{ k8s_api_port }} &
+  shell: ssh -N {{ bastion_admin_user }}@{{ bastion_ip }} -L {{ k8s_api_port }}:{{ haproxy_virtual_ip }}:{{ k8s_api_port }} &

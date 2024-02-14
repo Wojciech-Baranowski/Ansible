@@ -9,7 +9,7 @@ vrrp_instance haproxy-vip {
   virtual_router_id 60
 
   virtual_ipaddress {
-    {{ virtual_ip }}
+    {{ haproxy_virtual_ip }}
   }
 
   track_script {

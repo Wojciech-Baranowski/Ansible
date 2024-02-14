@@ -2,7 +2,7 @@
 apiVersion: kubeadm.k8s.io/v1beta3
 kind: ClusterConfiguration
 kubernetesVersion: {{ k8s_version }}
-controlPlaneEndpoint: {{ inventory_hostname }}
+controlPlaneEndpoint: {{ haproxy_virtual_ip }}
 networking:
   podSubnet: {{ pod_cidr }}
   serviceSubnet: {{ service_cidr }}
