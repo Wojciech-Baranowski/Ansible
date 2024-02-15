@@ -1,0 +1,9 @@
+---
+
+- hosts: localhost
+  become: true
+  become_method: "sudo"
+  become_flags: "-E"
+  roles:
+    - cloud_bootstrap
+

@@ -17,13 +17,13 @@
   include_tasks: destroy_cluster.yml
   when: is_first_master_node
 
-- name: Initialize cluster
-  include_tasks: initialize_cluster.yml
-  when: is_first_master_node
-
 - name: Initialize haproxy
   include_tasks: initialize_haproxy.yml
   when: is_master_node
+
+- name: Initialize cluster
+  include_tasks: initialize_cluster.yml
+  when: is_first_master_node
 
 - name: Propagate kubeconfig
   include_tasks: propagate_kubeconfig.yml

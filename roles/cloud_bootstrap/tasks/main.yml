@@ -1,0 +1,8 @@
+---
+
+- name: Bootstrap network
+  include_tasks: bootstrap_network.yml
+  
+- name: Bootstrap dashboard
+  include_tasks: bootstrap_dashboard.yml
+

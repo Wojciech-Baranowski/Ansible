@@ -1,0 +1,7 @@
+---
+
+kubectl: "kubectl --insecure-skip-tls-verify"
+kubectl_apply: "{{ kubectl }} apply -f"
+cloud_manifests_location: "IdeaProjects/Cloud/CloudManifests"
+is_first_master_node: "{{ groups['cloud_masters'] | first == inventory_hostname }}"
+

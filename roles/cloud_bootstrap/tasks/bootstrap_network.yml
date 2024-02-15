@@ -1,0 +1,5 @@
+---
+
+- name: Apply configmap
+  shell: "{{ kubectl_apply }} {{ cloud_manifests_location }}/kube-system/flannel/flannel.yml"
+  

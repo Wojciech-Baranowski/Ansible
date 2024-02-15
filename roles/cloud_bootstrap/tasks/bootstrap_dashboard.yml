@@ -1,0 +1,12 @@
+---
+
+- name: Deploy kubernetes-dashboard
+  shell: "{{ kubectl_apply }} {{ cloud_manifests_location }}/kubernetes-dashboard/kubernetes-dashboard/kubernetes-dashboard.yml"
+  
+- name: Get dashboard token
+  shell: "{{ kubectl }} -n kubernetes-dashboard describe secrets admin-user | awk '$1==\"token:\"{print $2}'"
+  register: dashboard_token 
+
+- name: Add token to kubeconfig
+  shell: "{{ kubectl }} config set-credentials kubernetes-admin --token={{ dashboard_token.stdout }}"
+
